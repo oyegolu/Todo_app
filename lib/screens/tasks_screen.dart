@@ -6,7 +6,7 @@ class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
+      backgroundColor: Colors.greenAccent,
     );
   }
 }
