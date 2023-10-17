@@ -9,7 +9,67 @@ class TasksScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.greenAccent,
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            // bottom sheet ka bhang bhosda //
+            showModalBottomSheet(
+              context: context,
+              builder: (context) => Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color(0xff757575),
+                  ),
+                  color: const Color(0xff757575),
+                ),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(20.0),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(top: 20.0),
+                        child: Text(
+                          'Add Task',
+                          style: TextStyle(
+                              fontSize: 24.0,
+                              color: Colors.greenAccent,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ),
+
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 40.0),
+                        child: TextField(
+                          autofocus: true,
+                          textAlign: TextAlign.center,
+                          cursorColor: Colors.greenAccent,
+                          decoration: InputDecoration(
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.greenAccent, width: 3.0))),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
+                        child: TextButton(
+                          onPressed: () {},
+                          style: ButtonStyle(
+                            minimumSize: MaterialStateProperty.all(const Size(double.infinity,50.0)),
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.greenAccent)),
+                          child: const Text('Add',style: TextStyle(color: Colors.white,fontSize: 16.0),),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            );
+            // this bahng bhosda ends here
+          },
           child: Icon(Icons.add),
           backgroundColor: Colors.greenAccent,
         ),
@@ -57,10 +117,7 @@ class TasksScreen extends StatelessWidget {
                     color: Colors.white,
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(20.0))),
-                child: const Padding(
-                  padding: EdgeInsets.only(left: 13.0),
-                  child: TasksList(),
-                ),
+                child: const TasksList(),
               ),
             )
           ],
