@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/reusableWidgets/tasks_list.dart';
+// import 'package:todoey/reusableWidgets/tasks_list.dart';
 import 'package:todoey/reusableWidgets/tasks_tile.dart';
+import 'package:todoey/screens/tasks_screen.dart';
 
 late String typedTaskName;
 class MyBottomSheet extends StatefulWidget {
@@ -51,7 +52,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   cursorColor: Colors.greenAccent,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                               color: Colors.greenAccent,
@@ -66,6 +67,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       myTasksList.add(ReusableTaskTile(taskName: typedTaskName));
                     print(typedTaskName);
                     Navigator.pop(context);
+
                   },
                   style: ButtonStyle(
                       minimumSize: MaterialStateProperty.all(
@@ -78,7 +80,8 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                         color: Colors.white, fontSize: 16.0),
                   ),
                 ),
-              )
+              ),
+
             ],
           ),
         ),

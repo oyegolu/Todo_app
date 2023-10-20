@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/reusableWidgets/tasks_list.dart';
+// import 'package:todoey/reusableWidgets/tasks_list.dart';
 import 'package:todoey/screens/addtasks_screen.dart';
 
-class TasksScreen extends StatelessWidget {
+List myTasksList = [];
+class TasksScreen extends StatefulWidget {
   const TasksScreen({Key? key}) : super(key: key);
 
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,6 +18,7 @@ class TasksScreen extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             // bottom sheet ka bhang bhosda //
+
             showModalBottomSheet(
                 isScrollControlled: true, // change no 1
                 context: context,
@@ -23,18 +30,18 @@ class TasksScreen extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(
+            Padding(
+              padding: const EdgeInsets.only(
                   top: 50.0, left: 30.0, right: 20.0, bottom: 20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                       radius: 25.0,
                       backgroundColor: Colors.white,
                       child: Icon(Icons.list, color: Colors.greenAccent)),
-                  SizedBox(height: 10.0),
-                  Text(
+                  const SizedBox(height: 10.0),
+                  const Text(
                     'Todoey',
                     style: TextStyle(
                         color: Colors.white,
@@ -42,10 +49,10 @@ class TasksScreen extends StatelessWidget {
                         letterSpacing: 1,
                         fontWeight: FontWeight.w700),
                   ),
-                  SizedBox(height: 5.0),
+                  const SizedBox(height: 5.0),
                   Text(
-                    '12 Tasks',
-                    style: TextStyle(color: Colors.white, fontSize: 18.0),
+                    '${myTasksList.length} Tasks',
+                    style: const TextStyle(color: Colors.white, fontSize: 18.0),
                   ),
                 ],
               ),
@@ -57,9 +64,21 @@ class TasksScreen extends StatelessWidget {
                     color: Colors.white,
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(20.0))),
-                child: const TasksList(),
+                child: ListView.builder(
+                  // provides you scrollable list of any widget with ability to automaticaly adapt to new added things (better than making column and copy paste in column add them into listView)
+                  itemCount: myTasksList.length,
+                  itemBuilder: (BuildContext context, index) {
+                    return myTasksList[index];
+                  },
+
+                ),
               ),
-            )
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  setState(() {});
+                },
+                child: const Text('ganja maro'))
           ],
         ));
   }
