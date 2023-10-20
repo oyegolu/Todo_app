@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ReusableTaskTile extends StatefulWidget {
-  const ReusableTaskTile({super.key});
+  final String taskName;
+  const ReusableTaskTile({super.key,required this.taskName});
 
   @override
   State<ReusableTaskTile> createState() => _ReusableTaskTileState();
@@ -23,7 +24,7 @@ class _ReusableTaskTileState extends State<ReusableTaskTile> {
             });
           }),
       title: Text(
-        'this is a demo task',
+        widget.taskName,
         style: TextStyle(
             decoration: valueOfCheckbox == false
                 ? TextDecoration.none

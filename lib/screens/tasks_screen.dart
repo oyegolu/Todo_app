@@ -27,27 +27,28 @@ class TasksScreen extends StatelessWidget {
               padding: EdgeInsets.only(
                   top: 50.0, left: 30.0, right: 20.0, bottom: 20.0),
               child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CircleAvatar(
-                        radius: 25.0,
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.list, color: Colors.greenAccent)),
-                    SizedBox(height: 10.0),
-                    Text(
-                      'Todoey',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 45.0,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w700),
-                    ),
-                    SizedBox(height: 5.0),
-                    Text(
-                      '12 Tasks',
-                      style: TextStyle(color: Colors.white, fontSize: 18.0),
-                    ),
-                  ]),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                      radius: 25.0,
+                      backgroundColor: Colors.white,
+                      child: Icon(Icons.list, color: Colors.greenAccent)),
+                  SizedBox(height: 10.0),
+                  Text(
+                    'Todoey',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 45.0,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  SizedBox(height: 5.0),
+                  Text(
+                    '12 Tasks',
+                    style: TextStyle(color: Colors.white, fontSize: 18.0),
+                  ),
+                ],
+              ),
             ),
             Expanded(
               child: Container(

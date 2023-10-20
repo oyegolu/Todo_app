@@ -1,5 +1,7 @@
 import'package:flutter/material.dart';
-import 'package:todoey/reusableWidgets/tasks_tile.dart';
+
+
+List myTasksList = [];
 
 
 class TasksList extends StatelessWidget {
@@ -7,14 +9,13 @@ class TasksList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return ListView.builder(
       // provides you scrollable list of any widget with ability to automaticaly adapt to new added things (better than making column and copy paste in column add them into listView)
+      itemCount: myTasksList.length,
+      itemBuilder: (BuildContext context, index) {
+        return myTasksList[index];
+      },
 
-      children: [
-        ReusableTaskTile(),
-        ReusableTaskTile(),
-        ReusableTaskTile(),
-      ],
     );
   }
 }
