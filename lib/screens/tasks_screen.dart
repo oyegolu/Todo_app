@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-// import 'package:todoey/reusableWidgets/tasks_list.dart';
 import 'package:todoey/screens/addtasks_screen.dart';
 
 List myTasksList = [];
+
 class TasksScreen extends StatefulWidget {
   const TasksScreen({Key? key}) : super(key: key);
 
@@ -70,7 +70,6 @@ class _TasksScreenState extends State<TasksScreen> {
                   itemBuilder: (BuildContext context, index) {
                     return myTasksList[index];
                   },
-
                 ),
               ),
             ),
