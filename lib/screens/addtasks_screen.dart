@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/reusableWidgets/tasks_list.dart';
-import 'package:todoey/reusableWidgets/tasks_tile.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/provider.dart';
 
-late String typedTaskName;
-class MyBottomSheet extends StatefulWidget {
 
-  const MyBottomSheet({
-    super.key
-  });
+String? typedTaskName;
+class MyBottomSheet extends StatelessWidget {
+  const MyBottomSheet({super.key,});
 
-  @override
-  State<MyBottomSheet> createState() => _MyBottomSheetState();
-}
 
-class _MyBottomSheetState extends State<MyBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,11 +45,10 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   cursorColor: Colors.greenAccent,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                              color: Colors.greenAccent,
-                              width: 3.0))),
+                              color: Colors.greenAccent, width: 3.0))),
                 ),
               ),
               Padding(
@@ -63,19 +56,22 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                     horizontal: 40.0, vertical: 20.0),
                 child: TextButton(
                   onPressed: () {
-                      myTasksList.add(ReusableTaskTile(taskName: typedTaskName));
-                    print(typedTaskName);
+                    if (typedTaskName != null) {
+                      Provider.of<ListUpdaterSlave>(context, listen: false)
+                          .addTask(typedTaskName.toString());
+                    } else {
+                      print('bitch atleast type somethin');
+                    }
                     Navigator.pop(context);
                   },
                   style: ButtonStyle(
                       minimumSize: MaterialStateProperty.all(
                           const Size(double.infinity, 50.0)),
-                      backgroundColor: MaterialStateProperty.all(
-                          Colors.greenAccent)),
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.greenAccent)),
                   child: const Text(
                     'Add',
-                    style: TextStyle(
-                        color: Colors.white, fontSize: 16.0),
+                    style: TextStyle(color: Colors.white, fontSize: 16.0),
                   ),
                 ),
               )

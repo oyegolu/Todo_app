@@ -1,8 +1,6 @@
 import'package:flutter/material.dart';
-
-
-List myTasksList = [];
-
+import'package:todoey/provider.dart';
+import 'package:provider/provider.dart';
 
 class TasksList extends StatelessWidget {
   const TasksList({super.key});
@@ -11,9 +9,9 @@ class TasksList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       // provides you scrollable list of any widget with ability to automaticaly adapt to new added things (better than making column and copy paste in column add them into listView)
-      itemCount: myTasksList.length,
+      itemCount: Provider.of<ListUpdaterSlave>(context).myTaskList.length,
       itemBuilder: (BuildContext context, index) {
-        return myTasksList[index];
+        return Provider.of<ListUpdaterSlave>(context).myTaskList[index];
       },
 
     );

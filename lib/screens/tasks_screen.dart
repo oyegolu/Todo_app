@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/provider.dart';
+import'package:provider/provider.dart';
 import 'package:todoey/reusableWidgets/tasks_list.dart';
 import 'package:todoey/screens/addtasks_screen.dart';
 
 class TasksScreen extends StatelessWidget {
   const TasksScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +26,18 @@ class TasksScreen extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(
+             Padding(
+              padding: const EdgeInsets.only(
                   top: 50.0, left: 30.0, right: 20.0, bottom: 20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                       radius: 25.0,
                       backgroundColor: Colors.white,
                       child: Icon(Icons.list, color: Colors.greenAccent)),
-                  SizedBox(height: 10.0),
-                  Text(
+                  const SizedBox(height: 10.0),
+                  const Text(
                     'Todoey',
                     style: TextStyle(
                         color: Colors.white,
@@ -42,10 +45,10 @@ class TasksScreen extends StatelessWidget {
                         letterSpacing: 1,
                         fontWeight: FontWeight.w700),
                   ),
-                  SizedBox(height: 5.0),
+                  const SizedBox(height: 5.0),
                   Text(
-                    '12 Tasks',
-                    style: TextStyle(color: Colors.white, fontSize: 18.0),
+                    '${Provider.of<ListUpdaterSlave>(context).myTaskList.length} Tasks',
+                    style: const TextStyle(color: Colors.white, fontSize: 18.0),
                   ),
                 ],
               ),

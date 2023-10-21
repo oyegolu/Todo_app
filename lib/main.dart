@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/provider.dart';
 import 'package:todoey/screens/tasks_screen.dart';
 
 void main() {
-  runApp(const Todoey());
+  runApp(ChangeNotifierProvider(
+      create: (context) => ListUpdaterSlave(), child: const Todoey()));
 }
 
 class Todoey extends StatelessWidget {
