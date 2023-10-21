@@ -5,12 +5,20 @@ class ListUpdaterSlave extends ChangeNotifier{
 
   final List<ReusableTaskTile> _myTasksList = [];
 
+
   List<ReusableTaskTile> get myTaskList=> _myTasksList;
-
-
   void addTask(String taskName) {
     ReusableTaskTile x = ReusableTaskTile(taskTitle: taskName) ;
     _myTasksList.add(x);
+    notifyListeners();
+  }
+
+
+  bool _isChecked = false;
+
+  bool get isChecked => _isChecked;
+  set isChecked(bool val){
+    _isChecked = val;
     notifyListeners();
   }
 
