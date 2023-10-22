@@ -14,12 +14,13 @@ class ListUpdaterSlave extends ChangeNotifier{
   }
 
 
-  bool _isChecked = false;
+  final bool _isChecked = true;
+  bool get isChecked=> _isChecked;
 
-  bool get isChecked => _isChecked;
-  set isChecked(bool val){
-    _isChecked = val;
-    notifyListeners();
-  }
+  final bool _isUnchecked = false;
+  bool get isUnchecked => _isUnchecked;
+
+
+
 
 }
