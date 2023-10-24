@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/reusableWidgets/tasks_tile.dart';
+
 
 class ListUpdaterSlave extends ChangeNotifier{
 
-  final List<ReusableTaskTile> _myTasksList = [];
 
-  List<ReusableTaskTile> get myTaskList=> _myTasksList;
+  List<String> _myTasksList = [];
 
+  List<String> get myTasksList=> _myTasksList;
 
   void addTask(String taskName) {
-    ReusableTaskTile x = ReusableTaskTile(taskTitle: taskName) ;
-    _myTasksList.add(x);
+    _myTasksList.add(taskName);
     notifyListeners();
   }
 
+  List<bool> _myTaskState = [];
+
+  List<bool> get myTaskState => _myTaskState;
+  set myTaskState(List<bool> val) {
+    _myTaskState = val;
+    notifyListeners();
+  }
+
+
 }
+

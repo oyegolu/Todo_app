@@ -5,20 +5,47 @@ import 'package:provider/provider.dart';
 class TasksList extends StatelessWidget {
   const TasksList({super.key});
 
+
   @override
   Widget build(BuildContext context) {
+    final x = Provider.of<ListUpdaterSlave>(context).myTaskList;
     return ListView.builder(
-      // provides you scrollable list of any widget with ability to automaticaly adapt to new added things (better than making column and copy paste in column add them into listView)
       itemCount: Provider.of<ListUpdaterSlave>(context).myTaskList.length,
       itemBuilder: (BuildContext context, index) {
-        return Provider.of<ListUpdaterSlave>(context).myTaskList[index];
+        return ReusableTaskTile(taskTitle: x[index], i: index,);
       },
-
     );
   }
 }
 
-// scroll issue right now don't know how to fix we will do it later
+class ReusableTaskTile extends StatelessWidget {
+  final String taskTitle;
+  final int i;
+  const ReusableTaskTile({super.key,required this.taskTitle, required this.i});
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      trailing: Checkbox(
+          value: Provider.of<ListUpdaterSlave>(context,listen: false).myTaskList[i].taskState,
+          activeColor: Colors.greenAccent,
+          onChanged: (newValue) {
+            // Provider.of<ListUpdaterSlave>(context,listen: false).myTaskList[i].taskState = newValue!;
+
+          }),
+      title: Text(
+        taskTitle,
+        // style: TextStyle(
+        //     decoration: isTaskChecked == false
+        //         ? TextDecoration.none
+        //         : TextDecoration.lineThrough),
+      ),
+    );
+  }
+}
+
 
 
 
