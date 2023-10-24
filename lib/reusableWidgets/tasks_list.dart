@@ -1,5 +1,5 @@
 import'package:flutter/material.dart';
-import'package:todoey/provider.dart';
+import'package:todoey/updateHelpers/provider.dart';
 import 'package:provider/provider.dart';
 
 class TasksList extends StatelessWidget {
@@ -8,11 +8,11 @@ class TasksList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final x = Provider.of<ListUpdaterSlave>(context).myTasksList;
+    final x = Provider.of<ListUpdaterSlave>(context).myTaskList;
     return ListView.builder(
-      itemCount: Provider.of<ListUpdaterSlave>(context).myTasksList.length,
+      itemCount: Provider.of<ListUpdaterSlave>(context).myTaskList.length,
       itemBuilder: (BuildContext context, index) {
-        return ReusableTaskTile(taskTitle: x[index], i: index,);
+        return ReusableTaskTile(taskTitle: x[index].taskName, i: index,);
       },
     );
   }
@@ -29,20 +29,22 @@ class ReusableTaskTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       trailing: Checkbox(
-          value: Provider.of<ListUpdaterSlave>(context).myTaskState[i],
+          value: Provider.of<ListUpdaterSlave>(context).myTaskList[i].taskState,
           activeColor: Colors.greenAccent,
           onChanged: (newValue) {
-
             Provider.of<ListUpdaterSlave>(context,listen: false).taskUpdater(i);
-
-          }),
+          }
+          ),
       title: Text(
         taskTitle,
         style: TextStyle(
-            decoration: Provider.of<ListUpdaterSlave>(context).myTaskState[i] == false
+            decoration: Provider.of<ListUpdaterSlave>(context).myTaskList[i].taskState == false
                 ? TextDecoration.none
                 : TextDecoration.lineThrough),
       ),
+      onLongPress: (){
+        Provider.of<ListUpdaterSlave>(context,listen: false).removeTask(i);
+      },
     );
   }
 }

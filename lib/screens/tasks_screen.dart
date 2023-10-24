@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/provider.dart';
+import 'package:todoey/updateHelpers/provider.dart';
 import'package:provider/provider.dart';
 import 'package:todoey/reusableWidgets/tasks_list.dart';
 import 'package:todoey/screens/addtasks_screen.dart';
@@ -7,16 +7,14 @@ import 'package:todoey/screens/addtasks_screen.dart';
 class TasksScreen extends StatelessWidget {
   const TasksScreen({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.greenAccent,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // bottom sheet ka bhang bhosda //
             showModalBottomSheet(
-                isScrollControlled: true, // change no 1
+                isScrollControlled: true,
                 context: context,
                 builder: (context) => const MyBottomSheet());
           },
@@ -47,7 +45,7 @@ class TasksScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 5.0),
                   Text(
-                    '${Provider.of<ListUpdaterSlave>(context).myTasksList.length} Tasks',
+                    '${Provider.of<ListUpdaterSlave>(context).myTaskList.length} Tasks',
                     style: const TextStyle(color: Colors.white, fontSize: 18.0),
                   ),
                 ],

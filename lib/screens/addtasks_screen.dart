@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todoey/provider.dart';
+import 'package:todoey/updateHelpers/provider.dart';
 
 
 String? typedTaskName;
@@ -18,7 +18,6 @@ class MyBottomSheet extends StatelessWidget {
         color: const Color(0xff757575),
       ),
       child: SingleChildScrollView(
-        // make change as per the chrome file change no 2
         child: Container(
           decoration: const BoxDecoration(
             color: Colors.white,
@@ -39,7 +38,7 @@ class MyBottomSheet extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40.0),
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
                 child: TextField(
                   onChanged: (enteredText) => typedTaskName = enteredText,
                   autofocus: true,
@@ -59,6 +58,7 @@ class MyBottomSheet extends StatelessWidget {
                     if (typedTaskName != null) {
                       Provider.of<ListUpdaterSlave>(context, listen: false)
                           .addTask(typedTaskName.toString());
+                      typedTaskName = null;
                     } else {
                       print('bitch atleast type somethin');
                     }
