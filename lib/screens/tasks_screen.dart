@@ -47,7 +47,7 @@ class TasksScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 5.0),
                   Text(
-                    '${Provider.of<ListUpdaterSlave>(context).myTaskList.length} Tasks',
+                    '${Provider.of<ListUpdaterSlave>(context).myTasksList.length} Tasks',
                     style: const TextStyle(color: Colors.white, fontSize: 18.0),
                   ),
                 ],

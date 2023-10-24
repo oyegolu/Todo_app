@@ -10,6 +10,7 @@ class ListUpdaterSlave extends ChangeNotifier{
 
   void addTask(String taskName) {
     _myTasksList.add(taskName);
+    _myTaskState.add(false);
     notifyListeners();
   }
 
@@ -18,6 +19,11 @@ class ListUpdaterSlave extends ChangeNotifier{
   List<bool> get myTaskState => _myTaskState;
   set myTaskState(List<bool> val) {
     _myTaskState = val;
+    notifyListeners();
+  }
+
+  void taskUpdater(int i) {
+    _myTaskState[i] = !_myTaskState[i];
     notifyListeners();
   }
 

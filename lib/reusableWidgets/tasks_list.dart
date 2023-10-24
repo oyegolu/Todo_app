@@ -8,9 +8,9 @@ class TasksList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final x = Provider.of<ListUpdaterSlave>(context).myTaskList;
+    final x = Provider.of<ListUpdaterSlave>(context).myTasksList;
     return ListView.builder(
-      itemCount: Provider.of<ListUpdaterSlave>(context).myTaskList.length,
+      itemCount: Provider.of<ListUpdaterSlave>(context).myTasksList.length,
       itemBuilder: (BuildContext context, index) {
         return ReusableTaskTile(taskTitle: x[index], i: index,);
       },
@@ -29,18 +29,19 @@ class ReusableTaskTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       trailing: Checkbox(
-          value: Provider.of<ListUpdaterSlave>(context,listen: false).myTaskList[i].taskState,
+          value: Provider.of<ListUpdaterSlave>(context).myTaskState[i],
           activeColor: Colors.greenAccent,
           onChanged: (newValue) {
-            // Provider.of<ListUpdaterSlave>(context,listen: false).myTaskList[i].taskState = newValue!;
+
+            Provider.of<ListUpdaterSlave>(context,listen: false).taskUpdater(i);
 
           }),
       title: Text(
         taskTitle,
-        // style: TextStyle(
-        //     decoration: isTaskChecked == false
-        //         ? TextDecoration.none
-        //         : TextDecoration.lineThrough),
+        style: TextStyle(
+            decoration: Provider.of<ListUpdaterSlave>(context).myTaskState[i] == false
+                ? TextDecoration.none
+                : TextDecoration.lineThrough),
       ),
     );
   }
